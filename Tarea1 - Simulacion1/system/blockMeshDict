@@ -29,20 +29,22 @@ vertices
 );
 
 blocks
+//hexaedro con los vertices en ese orden
 (
     hex (0 1 2 3 4 5 6 7) 
-    (100 10 1) 
-    simpleGrading (1 1 1)
+    (50 20 1) // subdiviciones y celdas a lo largo del eje
+    simpleGrading (1 1 1) //malla homogenea, graduada equispaceadamente
 );
 
 edges
 (
 );
 
+// condiciones de borde
 boundary
 (
 
-    inlet
+    inlet // se define los vertices de la cara de entrada del flujo
     {
         type patch;
         faces
@@ -50,7 +52,7 @@ boundary
             (0 4 7 3)
         );
     }
-    outlet
+    outlet // define los verices de salida del flujo
     {
         type patch;
         faces
@@ -59,7 +61,7 @@ boundary
         );
 
     }
-    upperWall
+    upperWall // vertices de la pared de arriba
     {
         type wall;
         faces
@@ -67,15 +69,15 @@ boundary
             (3 7 6 2)
         );      
     }
-    lowerWall
+    lowerWall // vertices de la pared de abajo
     {
-        type wall;
+        type wall; //tipo pared
         faces
         (
             (1 5 4 0)
         );        
     }
-    frontAndBack
+    frontAndBack // cara de al frente y de atras
     {
         type empty;
         faces
