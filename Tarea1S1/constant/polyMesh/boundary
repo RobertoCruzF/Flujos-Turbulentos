@@ -20,27 +20,27 @@ FoamFile
     inlet
     {
         type            patch;
-        nFaces          10;
+        nFaces          20;
         startFace       1930;
     }
     outlet
     {
         type            patch;
-        nFaces          10;
+        nFaces          20;
         startFace       1950;
     }
     upperWall
     {
         type            wall;
         inGroups        1(wall);
-        nFaces          100;
+        nFaces          50;
         startFace       1970;
     }
     lowerWall
     {
         type            wall;
         inGroups        1(wall);
-        nFaces          100;
+        nFaces          50;
         startFace       2020;
     }
     frontAndBack
