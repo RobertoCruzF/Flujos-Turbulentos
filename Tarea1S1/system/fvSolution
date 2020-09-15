@@ -17,26 +17,29 @@ FoamFile
 
 solvers
 {
+    // Presiones
     p
     {
-        solver          PCG;
-        preconditioner  DIC;
-        tolerance       1e-06;
-        relTol          0.05;
+        solver          PCG; // metodo de resolucion, tecninca matematica para poder resolver gradientes
+        preconditioner  DIC; // precondicionador 
+        tolerance       1e-06; //tolerancia, entre una iteracion y otra las diferencias son menores a (el numero)
+        relTol          0.05; //tolerancia relativa
     }
 
+    // Presion final
     pFinal
     {
         $p;
         relTol          0;
     }
 
+    // Velocidades
     U
     {
-        solver          smoothSolver;
-        smoother        symGaussSeidel;
-        tolerance       1e-05;
-        relTol          0;
+        solver          smoothSolver; // metodo de resolucion
+        smoother        symGaussSeidel; // suabisa la solucion  y una vez suabisada se la entrega al solver
+        tolerance       1e-06; //tolerancia
+        relTol          0.05; //tol relativa
     }
 }
 

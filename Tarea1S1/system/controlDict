@@ -15,7 +15,7 @@ FoamFile
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-application     icoFoam;
+application     icoFoam; // solver que corre el flujo laminar
 
 startFrom       startTime;
 
@@ -23,9 +23,9 @@ startTime       0;
 
 stopAt          endTime;
 
-endTime         19;
+endTime         0.1;
 
-deltaT          1e-03;
+deltaT          0.001;
 
 writeControl    timeStep;
 

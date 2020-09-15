@@ -14,18 +14,18 @@ FoamFile
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-convertToMeters 1.0;
+convertToMeters 0.1;
 
 vertices
 (
     (0 0 0)            //vertice 0
-    (1 0 0)            //vertice 1
-    (1 0.1 0)          //vertice 2
-    (0 0.1 0)          //vertice 3  
-    (0 0 0.01)          //vertice 4
-    (1 0 0.01)          //vertice 5
-    (1 0.1 0.01)         //vertice 6
-    (0 0.1 0.01)         //vertice 7
+    (100 0 0)          //vertice 1
+    (100 10 0)          //vertice 2
+    (0 10 0)          //vertice 3  
+    (0 0 1)          //vertice 4
+    (100 0 1)          //vertice 5
+    (100 10 1)         //vertice 6
+    (0 10 1)         //vertice 7
 );
 
 blocks
