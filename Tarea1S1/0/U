@@ -20,21 +20,50 @@ internalField   uniform (0 0 0);
 
 boundaryField
 {
-    movingWall
+
+// entrada
+    inlet
     {
+
+    // velocidad fija de entrada
         type            fixedValue;
+
+    // velocidad de 1 ms en X y cero en los otros ejes
         value           uniform (1 0 0);
     }
 
-    fixedWalls
+// salida
+    outlet
     {
+
+    // con zeroGradient, se hace que se calculen las velocidades
+    // tomando como condicion de borde que la presion relativa
+    // es igual a cero
+
+        type            zeroGradient;
+    }
+
+// pared superior
+    upperWall
+    {
+
+    // tienen tipo pared, noSlip no hay velocidad en ninguno
+    // de los sentidos
+        type            noSlip; 
+    }
+
+// pared inferior
+    lowerWall
+    {
+    // tienen tipo pared, noSlip no hay velocidad en ninguno
+    // de los sentidos
         type            noSlip;
     }
 
+// pared de al frente y de atras
     frontAndBack
     {
         type            empty;
     }
-}
 
-// ************************************************************************* //
+}

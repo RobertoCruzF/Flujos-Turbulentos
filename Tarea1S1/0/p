@@ -14,26 +14,53 @@ FoamFile
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-dimensions      [0 2 -2 0 0 0 0];
+dimensions      [0 2 -2 0 0 0 0]; // unidades de metros cuadrados partidos segundos cuadrados, presion partido en densidad
+
+// masa, distancia, tiempo, los otros ceros no se ocupan
 
 internalField   uniform 0;
 
 boundaryField
 {
-    movingWall
+
+//entrada
+    inlet 
     {
+    // tiene que calcula la presion a la entrada, la velocidad es la quie se impone al principio
+        type            zeroGradient; 
+    }
+
+// salida
+    outlet
+    {
+
+    // el tipo de salida es un valor fijo y uniforme
+
+        type            fixedValue; 
+        value           uniform 0;
+    }
+
+// pared superior
+    upperWall
+    {
+    // dp/dx, no varia la presion, la pared no afecta en la presion
         type            zeroGradient;
     }
 
-    fixedWalls
+// pared inferior
+    lowerWall
     {
+    // misma caondicon que upperWall
         type            zeroGradient;
     }
 
+// caras de al frente y de atras
     frontAndBack
     {
+    // vacio, por lo tanto se transforma en una simulacion en 2D
         type            empty;
     }
+
 }
 
 // ************************************************************************* //
