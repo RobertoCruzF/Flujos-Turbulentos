@@ -1,0 +1,63 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  5                                     |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "system";
+    object      fvSchemes;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+// terminos que tienen derivadas en el tiempo (no hay)
+ddtSchemes
+{
+
+    // los resuelve mediante Euler
+    default         Euler;
+}
+
+// todos los terminos que tienen gradiente
+gradSchemes
+{
+
+    // los resuelve con un Gauss Linear
+    default         Gauss linear;
+    grad(p)         Gauss linear;
+}
+
+// divergencias
+divSchemes
+{
+
+    // tambien las resuelve con Gauss Linear
+    default         none;
+    div(phi,U)      Gauss linear;
+}
+
+
+// laplacianos
+laplacianSchemes
+{
+    default         Gauss linear orthogonal;
+}
+
+// interpolaciones
+interpolationSchemes
+{
+    default         linear;
+}
+
+snGradSchemes
+{
+    default         orthogonal;
+}
+
+
+// ************************************************************************* //

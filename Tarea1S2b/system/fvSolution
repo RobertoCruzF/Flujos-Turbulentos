@@ -1,0 +1,55 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  5                                     |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "system";
+    object      fvSolution;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+solvers
+{
+    // Presiones
+    p
+    {
+        solver          PCG; // metodo de resolucion, tecninca matematica para poder resolver gradientes
+        preconditioner  DIC; // precondicionador 
+        tolerance       1e-06; //tolerancia, entre una iteracion y otra las diferencias son menores a (el numero)
+        relTol          0.05; //tolerancia relativa
+    }
+
+    // Presion final
+    pFinal
+    {
+        $p;
+        relTol          0;
+    }
+
+    // Velocidades
+    U
+    {
+        solver          smoothSolver; // metodo de resolucion
+        smoother        symGaussSeidel; // suabisa la solucion  y una vez suabisada se la entrega al solver
+        tolerance       1e-06; //tolerancia
+        relTol          0.05; //tol relativa
+    }
+}
+
+PISO
+{
+    nCorrectors     2;
+    nNonOrthogonalCorrectors 0;
+    pRefCell        0;
+    pRefValue       0;
+}
+
+
+// ************************************************************************* //

@@ -1,0 +1,92 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  5                                     |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      blockMeshDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+convertToMeters 0.1;
+
+vertices
+(
+    (0 0 0)            //vertice 0
+    (100 0 0)          //vertice 1
+    (100 10 0)          //vertice 2
+    (0 10 0)          //vertice 3  
+    (0 0 1)          //vertice 4
+    (100 0 1)          //vertice 5
+    (100 10 1)         //vertice 6
+    (0 10 1)         //vertice 7
+);
+
+blocks
+//hexaedro con los vertices en ese orden
+(
+    hex (0 1 2 3 4 5 6 7) 
+    (50 20 1) // subdiviciones y celdas a lo largo del eje
+    simpleGrading (1 1 1) //malla homogenea, graduada equispaceadamente
+);
+
+edges
+(
+);
+
+// condiciones de borde
+boundary
+(
+
+    inlet // se define los vertices de la cara de entrada del flujo
+    {
+        type patch;
+        faces
+        (
+            (0 4 7 3)
+        );
+    }
+    outlet // define los verices de salida del flujo
+    {
+        type patch;
+        faces
+        (
+            (1 2 6 5)
+        );
+
+    }
+    upperWall // vertices de la pared de arriba
+    {
+        type wall;
+        faces
+        (
+            (3 7 6 2)
+        );      
+    }
+    lowerWall // vertices de la pared de abajo
+    {
+        type wall; //tipo pared
+        faces
+        (
+            (1 5 4 0)
+        );        
+    }
+    frontAndBack // cara de al frente y de atras
+    {
+        type empty;
+        faces
+        (
+            (0 3 2 1)
+            (4 5 6 7)
+        );  
+    }
+
+);
+
+// **************************************************************** //  

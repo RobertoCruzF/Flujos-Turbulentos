@@ -1,0 +1,69 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  5                                     |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       volVectorField;
+    object      U;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+dimensions      [0 1 -1 0 0 0 0];
+
+internalField   uniform (0 0 0);
+
+boundaryField
+{
+
+// entrada
+    inlet
+    {
+
+    // velocidad fija de entrada
+        type            fixedValue;
+
+    // velocidad de 1 ms en X y cero en los otros ejes
+        value           uniform (1 0 0);
+    }
+
+// salida
+    outlet
+    {
+
+    // con zeroGradient, se hace que se calculen las velocidades
+    // tomando como condicion de borde que la presion relativa
+    // es igual a cero
+
+        type            zeroGradient;
+    }
+
+// pared superior
+    upperWall
+    {
+
+    // tienen tipo pared, noSlip no hay velocidad en ninguno
+    // de los sentidos
+        type            noSlip; 
+    }
+
+// pared inferior
+    lowerWall
+    {
+    // tienen tipo pared, noSlip no hay velocidad en ninguno
+    // de los sentidos
+        type            noSlip;
+    }
+
+// pared de al frente y de atras
+    frontAndBack
+    {
+        type            empty;
+    }
+
+}
